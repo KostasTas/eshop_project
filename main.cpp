@@ -218,8 +218,7 @@ class Eshop{
     vector<Item*> itemsList;
     vector<Item*> categoryList;
     Item* temp;
-    Pen* x;
-
+    vector<Buyer> buyerList;
 
 
     public:
@@ -228,21 +227,17 @@ class Eshop{
                 itemsList.push_back(item);
             }
 
-            void addCategory(Item* x){
+            void addCategory(Item* item){
 
-                for(auto i=0;i<=itemsList.size();i++){
-                   // for(auto j=1;j<=itemsList.size();j++){
-                            if(itemsList[i]==x){
+                for(auto int i=0;i<=itemsList.size();i++){
+                    for(auto int j=1;j<=itemsList.size();j++){
+                            if(itemsList[i]==item){
                                     temp=itemsList[i];
                                     categoryList.push_back(temp);
-                                   // temp=itemsList[i];
-                                   // categoryList.push_back(x);
-                                   cout<<"hello"<<endl;
-
+                                    temp=item;
+                                    categoryList.push_back(temp);							
                             }
-
-                    //}
-
+                    }
                 }
             }
 
@@ -259,9 +254,14 @@ class Eshop{
             }
 
             void removeItem( Item* item ){
-
                 itemsList.erase(find(itemsList.begin(), itemsList.end(), item), itemsList.end());
             }
+           void addBuyer( Buyer buyer ){
+                buyerList.push_back(buyer);
+            }
+            void removeBuyer( Buyer buyer ){
+                buyerList.erase(find(buyerList.begin(), buyerList.end(), buyer), buyerList.end());
+            }	
 };
 
 int main(){
@@ -289,13 +289,8 @@ int main(){
                     x->setDetails("molivi", "kanoniko", 1334, 5, 2.00);
                     eshop.addItem(x);
 
-                    //eshop.addCategory(c);
-
                     Item* g= new Notebook(3);
                     g->setDetails("tetradio", "mikro", 1433, 5 ,4.5);
-                    //eshop.addItem(d);
-
-
 
                     Item* e= new Notebook(2);
                     e->setDetails("tetradio", "megalo", 1432, 3 ,4.00);
@@ -311,9 +306,6 @@ int main(){
                     cout << "Pencils: " << Pencil::cnt<<endl;
                     cout << "Notebooks: " << Notebook::cnt<<endl;
                     cout << "Papers: " << Paper::cnt<<endl<<endl;
-
-//eshop.addCategory(e);
-//eshop.showProductsInCategory();
 
 
 	return 0;
